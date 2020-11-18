@@ -4,3 +4,4 @@ import './index.css';
 import Home from './component/Home/Home';
 
 ReactDOM.render(<Home />, document.getElementById('root'));
+

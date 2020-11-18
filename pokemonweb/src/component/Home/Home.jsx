@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import './Home.css'
+import React, { Component } from 'react';
+import './Home.css';
 import logopokemon from './logopokemon.png';
-import { Jumbotron, Container, Card} from 'react-bootstrap';
+import { Jumbotron, Container} from 'react-bootstrap';
+import Pokemon from '../Pokemon/Pokemon';
 
 export default class Home extends Component {
    
@@ -20,6 +21,7 @@ export default class Home extends Component {
 
                 </div>
               <br />
+              <Pokemon />
             </Container>
             
             
