@@ -1,20 +1,41 @@
-.wrapper{
-    position: relative;
+
+body{
+    background-color: black;
 }
 
-.over_map{
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 5;
+.logo{
+    width: 200px;
+    height: 80px;
 }
 
-.pedir {
-    color: black;
-    outline: none;
-    margin: 0 1rem;
-    background-color: #FFF017;
-    border-color: black;
-    width: 120px;
-    height: 40px;
+.outer-div {
+    height: 330px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    
+}
+
+.jumbotron-div {
+    height: 100%;
+    align-items: center;
+    
+}
+
+.jumbo-boy {
+    background: black;
+    text-align: center;
+}
+
+.jumbo-boy h1 {
+    font-size: 40px;
+    font-family: Arial;
+    color: white;
+}
+
+.jumbo-boy h5 {
+    font-size: 20px;
+    font-family: Arial;
+    color: white;
 }
