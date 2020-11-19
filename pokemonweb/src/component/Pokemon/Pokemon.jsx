@@ -1,25 +1,13 @@
-import React from 'react';
-import { Card, Button, Container } from 'react-bootstrap';
+import React, {useEffect, useState} from 'react';
+import { Card, Button} from 'react-bootstrap';
 import pokeball from './pokeball.png';
 import './Pokemon.css';
 
-export default class Pokemon extends React.Component {
 
-    constructor(props) {
-        super(props);
+const Pokemon = () => {
+    const[ pokemonlista, setPokemonlista] = useState([])
 
-        this.state = {
-            pokemonlista: [],
-        };
-
-
-    }
-
-    async componentDidMount() {
-        await this.fetchPokemon()
-    }
-
-    fetchPokemon = () => {
+    useEffect(() =>{
         var myHeaders = new Headers();
 
         var myInit = {
@@ -34,22 +22,16 @@ export default class Pokemon extends React.Component {
                 return res = res.json();
             })
             .then(data => {
-                this.setState({
-                    pokemonlista: data
-                })
-            })
-            ;
-    }
+                setPokemonlista(data.results)
+            });
 
-    mostrarPokemon() {
-        const { pokemonlista } = this.state;
-        const pokemonlist = [];
+    }, []);
 
-        if (pokemonlista && pokemonlista.results) {
-            Object.keys(pokemonlista.results).forEach((key, index) => {
-                const pokemon = pokemonlista.results[index];
-                const card =
-                    <Card border="warning" bg="dark" text="white">
+    return (
+        <div>
+        {pokemonlista.map((pokemon) => {
+            return(
+                <Card border="warning" bg="dark" text="white">
                         <Card.Body>
                             <Card.Title>
                                 {pokemon.name}
@@ -60,22 +42,11 @@ export default class Pokemon extends React.Component {
 
                         </Card.Body>
                     </Card>
+            )
 
-                pokemonlist.push(card);
-            });
-        }
-
-        return pokemonlist;
-    }
-
-    render() {
-
-        return (
-            <Container>
-                {this.mostrarPokemon()}
-            </Container>
-
-        );
-    }
-
+        })}
+        </div>  
+    );
 }
+
+export default Pokemon
