@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css';
 import logopokemon from './logopokemon.png';
-import { Jumbotron, Container} from 'react-bootstrap';
+import { Jumbotron, Container, Button} from 'react-bootstrap';
 import Pokemon from '../Pokemon/Pokemon';
 
 export default class Home extends Component {
