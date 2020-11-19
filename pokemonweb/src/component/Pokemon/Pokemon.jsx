@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Card, Button} from 'react-bootstrap';
 import pokeball from './pokeball.png';
 import './Pokemon.css';
+import Home from '../Home/Home';
 
 
 const Pokemon = () => {
@@ -69,13 +70,16 @@ const Pokemon = () => {
             )
 
         })}
+
+        <div class="col text-center">
+            <Button type = "submit" disabled={anterior==null}variant="outline-light" style={{ margin:'16px' }} onClick={()=>setActual(anterior)}>
+                Anterior
+            </Button>
+            <Button type = "submit" disabled={siguiente==null} variant="outline-light" style={{ margin:'16px' }} onClick={()=>setActual(siguiente)}>
+                Siguiente
+            </Button>
+        </div> 
         
-        <Button type = "submit" className="float-right" variant="outline-warning" onClick={()=>setActual(siguiente)}>
-            Siguiente
-         </Button>
-         <Button type = "submit" className="float-left" variant="outline-warning" onClick={()=>setActual(anterior)}>
-            Anterior
-         </Button>
         </div>  
     );
 }
