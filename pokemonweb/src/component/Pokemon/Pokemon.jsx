@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Card, Button} from 'react-bootstrap';
 import pokeball from './pokeball.png';
 import './Pokemon.css';
-import Home from '../Home/Home';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 
 
 const Pokemon = () => {
@@ -38,9 +38,16 @@ const Pokemon = () => {
                             <Card.Body>
                                 <Card.Title>
                                     {pokemon.name}
-                                    <Button className="float-right" variant="outline-warning"><img src={pokeball} className="pokeball" alt="pokeball" />
-                                        Información
-                                    </Button>
+                                    <Router>
+                                    <Link to = {{ pathname:'/DetallePokemon'}}>
+                                        <div>
+                                            <Button className="float-right" variant="outline-warning">
+                                                <img src={pokeball} className="pokeball" alt="pokeball"/>
+                                                Información
+                                            </Button>
+                                        </div>
+                                    </Link>
+                                    </Router>
                                 </Card.Title>
     
                             </Card.Body>
@@ -59,10 +66,15 @@ const Pokemon = () => {
                 <Card border="warning" bg="dark" text="white">
                         <Card.Body>
                             <Card.Title>
-                                {pokemon.name}
-                                <Button className="float-right" variant="outline-warning"><img src={pokeball} className="pokeball" alt="pokeball" />
-                                    Información
-                                </Button>
+                                {pokemon.name}                             
+                                    <Link to ="/DetallePokemon">
+                                        <div>
+                                            <Button className="float-right" variant="outline-warning">
+                                                <img src={pokeball} className="pokeball" alt="pokeball"/>
+                                                Información
+                                            </Button>
+                                        </div>
+                                    </Link>                               
                             </Card.Title>
 
                         </Card.Body>
