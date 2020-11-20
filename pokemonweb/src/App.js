@@ -8,7 +8,7 @@ class App extends Component{
   render(){
     return(
       <Router>
-        <Route exact path="/DetallePokemon" component={DetallePokemon}></Route>
+        <Route exact path="/DetallePokemon/:id" component={DetallePokemon}></Route>
         <Route exact path="/" component={Home}></Route>
       </Router>  
     )

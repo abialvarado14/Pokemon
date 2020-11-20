@@ -12,8 +12,6 @@ const Pokemon = () => {
     const [actual, setActual] = useState('https://pokeapi.co/api/v2/pokemon'); //La página actual de la API
 
     useEffect(() =>{
-        console.log(actual)
-        console.log(pokemonlista)
         var myHeaders = new Headers();
 
         var myInit = {
@@ -33,13 +31,14 @@ const Pokemon = () => {
                 setAnterior(data.previous)
             });
             pokemonlista.map((pokemon) => {
+                let idpokemon = pokemon.url.split('/')[pokemon.url.split('/').length-2]
                 return(
                     <Card border="warning" bg="dark" text="white">
                             <Card.Body>
                                 <Card.Title>
                                     {pokemon.name}
                                     <Router>
-                                    <Link to = {{ pathname:'/DetallePokemon'}}>
+                                    <Link to = {`/DetallePokemon/${idpokemon}`}>
                                         <div>
                                             <Button className="float-right" variant="outline-warning">
                                                 <img src={pokeball} className="pokeball" alt="pokeball"/>
@@ -62,12 +61,13 @@ const Pokemon = () => {
     return (
         <div>
         {pokemonlista.map((pokemon) => {
+            let idpokemon = pokemon.url.split('/')[pokemon.url.split('/').length-2]
             return(
                 <Card border="warning" bg="dark" text="white">
                         <Card.Body>
                             <Card.Title>
                                 {pokemon.name}                             
-                                    <Link to ="/DetallePokemon">
+                                    <Link to ={`/DetallePokemon/${idpokemon}`}>
                                         <div>
                                             <Button className="float-right" variant="outline-warning">
                                                 <img src={pokeball} className="pokeball" alt="pokeball"/>
@@ -83,7 +83,7 @@ const Pokemon = () => {
 
         })}
 
-        <div class="col text-center">
+        <div className="col text-center">
             <Button type = "submit" disabled={anterior==null}variant="outline-light" style={{ margin:'16px' }} onClick={()=>setActual(anterior)}>
                 Anterior
             </Button>
