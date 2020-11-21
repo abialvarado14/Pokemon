@@ -36,7 +36,7 @@ const Pokemon = () => {
                     <Card border="warning" bg="dark" text="white">
                             <Card.Body>
                                 <Card.Title>
-                                    {pokemon.name}
+                                    {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
                                     <Router>
                                     <Link to = {`/DetallePokemon/${idpokemon}`}>
                                         <div>
@@ -66,7 +66,7 @@ const Pokemon = () => {
                 <Card border="warning" bg="dark" text="white">
                         <Card.Body>
                             <Card.Title>
-                                {pokemon.name}                             
+                                {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}                             
                                     <Link to ={`/DetallePokemon/${idpokemon}`}>
                                         <div>
                                             <Button className="float-right" variant="outline-warning">
