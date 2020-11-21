@@ -19,6 +19,7 @@ const DetallePokemon = () => {
     const[ stats, setStats] = useState([]) //Lista de stats del pokemon
     const[especie, setEspecie] = useState(null) //Especie
     const[items, setItems] = useState([]) // Lista de held_items
+    const[error, setError] = useState(false) // Identificar error al cargar la página
 
 
     useEffect(() =>{
@@ -48,11 +49,35 @@ const DetallePokemon = () => {
                 setStats(data.stats)
                 setEspecie(data.species.name)
                 setItems(data.held_items)
-            });
+            })
+            .catch(() => {setError(true)});
     }, []);
 
 
+    if(error){
+        return(
+            <Container>
+            <div className="outer-div">
+                <div className="jumbotron-div">
+                    <Jumbotron className="jumbo-boy mb-3" >
+                        <h1>Registro </h1>
+                        <img src={logopokemon} className="logo" alt="logo" />
+                        <h5>¡No encontramos el pokemon solicitado, puedes encontrar otros o volver a intentar!</h5>
+                        <Link to ="/">
+                            <div className="col text-center">
+                                <Button variant="outline-light">
+                                    Inicio
+                                </Button>
+                            </div>
+                        </Link> 
+                    </Jumbotron>
+                </div>
 
+            </div>
+          <br />
+        </Container>       
+        )
+    }else{
         return (
             <Container>
                 <div className="outer-div">
@@ -101,8 +126,8 @@ const DetallePokemon = () => {
                     </Card>                         
                          </Col>
                             <div id="contenedor">
-                                <img src={imagenT} className="media" alt="media" /> 
                                  <img src={imagenF} className="media" alt="media" />
+                                 <img src={imagenT} className="media" alt="media" /> 
                             </div>
                          <Col> 
                          <Card bg="dark" className="mb-2" text="light" border="light" style={{ width: '18rem' }}>
@@ -141,14 +166,15 @@ const DetallePokemon = () => {
                                 </Button>
                             </div>
                 </Link> 
-                <row>
-                    <col></col>
-                </row>
+                <Row>
+                    <Col></Col>
+                </Row>
 
             </Container> 
 
             
         );
+    }
     
 }
 
