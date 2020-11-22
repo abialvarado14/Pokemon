@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import logopokemon from '../Home/logopokemon.png';
-import { Jumbotron, Container, Button, Card, Row, Col, Badge, Carousel} from 'react-bootstrap';
-import { Link, useParams, BrowserRouter as Router } from 'react-router-dom';
+import { Jumbotron, Container, Button, Card, Row, Col, Badge, Carousel, Spinner} from 'react-bootstrap';
+import { Link, useParams} from 'react-router-dom';
 import './DetallePokemon.css';
 
 
@@ -27,7 +27,7 @@ const DetallePokemon = () => {
     const[especie, setEspecie] = useState(null) //Especie
     const[items, setItems] = useState([]) // Lista de held_items
     const[error, setError] = useState(false) // Identificar error al cargar la página
-
+    
 
     useEffect(() =>{
         var myHeaders = new Headers();
@@ -65,6 +65,7 @@ const DetallePokemon = () => {
                 setImagenOmegaSh((data.sprites.versions["generation-vi"])["omegaruby-alphasapphire"].front_shiny)
             })
             .catch(() => {setError(true)});
+
     }, []);
 
 
@@ -91,6 +92,23 @@ const DetallePokemon = () => {
           <br />
         </Container>       
         )
+    }else if(peso==null){
+        return(
+            <Container>
+            <div className="outer-div">
+                <div className="jumbotron-div">
+                    <Jumbotron className="jumbo-boy mb-3" >
+                        <h1>Detalle Pokemón</h1>
+                        <img src={logopokemon} className="logo" alt="logo" />
+                        <h5>¡Encuentra la información de tu pokemón favorito!</h5>
+                        <Spinner animation="grow" variant="warning" />
+                    </Jumbotron>
+                </div>
+
+            </div>
+          <br />
+        </Container>       
+        )
     }else{
         return (
             <Container>
@@ -102,7 +120,7 @@ const DetallePokemon = () => {
                             <h5>¡Encuentra la información de tu pokemón favorito!</h5>
                             <div className="col text-center">
                         <h1>
-                            <Badge className="mb-2" variant="light">{nombre}</Badge>
+                                <Badge className="mb-2" variant="light">{nombre}</Badge>
                         </h1>
                 </div>
                         </Jumbotron>
@@ -184,81 +202,75 @@ const DetallePokemon = () => {
                 </Link> 
  
                 <Carousel>
-  <Carousel.Item>
-      <Row>
-        <Col>
-          <img
-            className="d-block w-30 media"
-            src={imagenF}
-            alt="media"
-          />
-          </Col>
-          <Col>
-          <img
-            className="d-block w-30 media"
-            src={imagenT}
-            alt="media"
-          />
-          </Col>
+                    <Carousel.Item>
+                        <Row>
+                            <Col>
+                            <img
+                                className="d-block w-30 media"
+                                src={imagenF}
+                                alt="media"
+                            />
+                            </Col>
+                            <Col>
+                            <img
+                                className="d-block w-30 media"
+                                src={imagenT}
+                                alt="media"
+                            />
+                            </Col>
 
-          <Col>
-          <img
-            className="d-block w-30 media"
-            src={imagenFS}
-            alt="media"
-            />
-          </Col>
-          <Col>
-          <img
-            className="d-block w-30 media"
-             src={imagenBS}
-            alt="media"
-         />
-          </Col>
-      </Row>
-  
- 
-  </Carousel.Item>
-  <Carousel.Item>
-      <Row>
-          <Col>
-          <img
-                className="d-block w-30 media"
-                src={imagenOmega}
-                alt="media"
-          />        
-          </Col>
-          <Col>
-          <img
-                className="d-block w-30 media"
-                src={imagenOmegaSh}
-                alt="media"
-          />        
-          </Col>
-          <Col>
-          <img
-                className="d-block w-30 media"
-                src={imagenEM}
-                alt="media"
-          />        
-          </Col>
-          <Col>
-          <img
-                className="d-block w-30 media"
-                src={imagenEMS}
-                alt="media"
-          />        
-          </Col>
-      </Row>
-
-  </Carousel.Item>
-</Carousel>
-                
-
-            </Container> 
-            
-
-            
+                            <Col>
+                            <img
+                                className="d-block w-30 media"
+                                src={imagenFS}
+                                alt="media"
+                                />
+                            </Col>
+                            <Col>
+                            <img
+                                className="d-block w-30 media"
+                                src={imagenBS}
+                                alt="media"
+                            />
+                            </Col>
+                        </Row>
+                    
+                    
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <Row>
+                            <Col>
+                            <img
+                                    className="d-block w-30 media"
+                                    src={imagenOmega}
+                                    alt="media"
+                            />        
+                            </Col>
+                            <Col>
+                            <img
+                                    className="d-block w-30 media"
+                                    src={imagenOmegaSh}
+                                    alt="media"
+                            />        
+                            </Col>
+                            <Col>
+                            <img
+                                    className="d-block w-30 eme"
+                                    src={imagenEM}
+                                    alt="media"
+                            />        
+                            </Col>
+                            <Col>
+                            <img
+                                    className="d-block w-30 eme"
+                                    src={imagenEMS}
+                                    alt="media"
+                            />        
+                            </Col>
+                        </Row>
+                    </Carousel.Item>
+                </Carousel>
+            </Container>            
         );
     }
     

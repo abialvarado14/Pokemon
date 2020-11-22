@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Card, Button, Form, Container, FormControl} from 'react-bootstrap';
+import { Card, Button, Form, FormControl} from 'react-bootstrap';
 import pokeball from './pokeball.png';
 import './Pokemon.css';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
@@ -66,7 +66,7 @@ const Pokemon = () => {
                 <Card border="warning" bg="dark" text="white">
                         <Card.Body>
                             <Card.Title>
-                                {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}                             
+                                {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}                         
                                     <Link to ={`/DetallePokemon/${idpokemon}`}>
                                         <div>
                                             <Button className="float-right" variant="outline-warning">
