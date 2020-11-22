@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import logopokemon from '../Home/logopokemon.png';
-import { Jumbotron, Container, Button, Card, Row, Col, Badge} from 'react-bootstrap';
+import { Jumbotron, Container, Button, Card, Row, Col, Badge, Carousel} from 'react-bootstrap';
 import { Link, useParams, BrowserRouter as Router } from 'react-router-dom';
 import './DetallePokemon.css';
 
@@ -9,6 +9,13 @@ const DetallePokemon = () => {
 
     const[ imagenT, setImagenT] = useState(null) //Referencia a back_default
     const[imagenF, setImagenF] = useState(null) //Referencia a front_default
+    const[imagenFS, setImagenFS] = useState(null) //Referencia a front_shiny_default
+    const[imagenBS, setImagenBS] = useState(null) //Referencia a back_shiny_default   
+    const[imagenDF, setImagenDF] = useState(null) // Referencia a front_default de dream_world
+    const[imagenOmegaSh, setImagenOmegaSh] = useState(null) //Referencia a front_shiny de en omegaruby-alphasapphire
+    const[imagenEM, setImagenEM] = useState(null) //Referencia a front_default emerald
+    const[imagenEMS, setImagenEMS] = useState(null) //Referencia a front_shiny emerald
+    const[imagenOmega, setImagenOmega] = useState(null) //Referencia a front_default en omegaruby-alphasapphire
     const[nombre, setNombre] = useState(null) //Referencia a name
     const[altura, setAltura] = useState(null) //Referencia a height
     const[peso, setPeso] = useState(null) //Referencia a weight
@@ -49,6 +56,13 @@ const DetallePokemon = () => {
                 setStats(data.stats)
                 setEspecie(data.species.name)
                 setItems(data.held_items)
+                setImagenFS(data.sprites.front_shiny)
+                setImagenBS(data.sprites.back_shiny)
+                setImagenDF(data.sprites.other.dream_world.front_default)
+                setImagenEM(data.sprites.versions["generation-iii"].emerald.front_default)
+                setImagenEMS(data.sprites.versions["generation-iii"].emerald.front_shiny)
+                setImagenOmega((data.sprites.versions["generation-vi"])["omegaruby-alphasapphire"].front_default)
+                setImagenOmegaSh((data.sprites.versions["generation-vi"])["omegaruby-alphasapphire"].front_shiny)
             })
             .catch(() => {setError(true)});
     }, []);
@@ -86,16 +100,16 @@ const DetallePokemon = () => {
                             <h1>Detalle Pokemón </h1>
                             <img src={logopokemon} className="logo" alt="logo" />
                             <h5>¡Encuentra la información de tu pokemón favorito!</h5>
+                            <div className="col text-center">
+                        <h1>
+                            <Badge className="mb-2" variant="light">{nombre}</Badge>
+                        </h1>
+                </div>
                         </Jumbotron>
                     </div>
 
                 </div>
 
-                <div className="col text-center">
-                        <h1>
-                            <Badge variant="light">{nombre}</Badge>
-                        </h1>
-                </div>
                 
                 <Container>
                     <Row>
@@ -123,12 +137,14 @@ const DetallePokemon = () => {
                                  })}
                                 </Card.Text>
                             </Card.Body>
-                    </Card>                         
+                    </Card>                      
                          </Col>
-                            <div id="contenedor">
-                                 <img src={imagenF} className="media" alt="media" />
-                                 <img src={imagenT} className="media" alt="media" /> 
+                         <Col>
+                         <div id="contenedor">
+                            <img src={imagenDF} className="principal" alt="principal" />
+
                             </div>
+                         </Col>                            
                          <Col> 
                          <Card bg="dark" className="mb-2" text="light" border="light" style={{ width: '18rem' }}>
                             <Card.Body>
@@ -161,16 +177,86 @@ const DetallePokemon = () => {
                
                 <Link to ="/">
                             <div className="col text-center">
-                                <Button variant="outline-light">
+                                <Button variant="outline-light" size="lg">
                                     Inicio
                                 </Button>
                             </div>
                 </Link> 
-                <Row>
-                    <Col></Col>
-                </Row>
+ 
+                <Carousel>
+  <Carousel.Item>
+      <Row>
+        <Col>
+          <img
+            className="d-block w-30 media"
+            src={imagenF}
+            alt="media"
+          />
+          </Col>
+          <Col>
+          <img
+            className="d-block w-30 media"
+            src={imagenT}
+            alt="media"
+          />
+          </Col>
+
+          <Col>
+          <img
+            className="d-block w-30 media"
+            src={imagenFS}
+            alt="media"
+            />
+          </Col>
+          <Col>
+          <img
+            className="d-block w-30 media"
+             src={imagenBS}
+            alt="media"
+         />
+          </Col>
+      </Row>
+  
+ 
+  </Carousel.Item>
+  <Carousel.Item>
+      <Row>
+          <Col>
+          <img
+                className="d-block w-30 media"
+                src={imagenOmega}
+                alt="media"
+          />        
+          </Col>
+          <Col>
+          <img
+                className="d-block w-30 media"
+                src={imagenOmegaSh}
+                alt="media"
+          />        
+          </Col>
+          <Col>
+          <img
+                className="d-block w-30 media"
+                src={imagenEM}
+                alt="media"
+          />        
+          </Col>
+          <Col>
+          <img
+                className="d-block w-30 media"
+                src={imagenEMS}
+                alt="media"
+          />        
+          </Col>
+      </Row>
+
+  </Carousel.Item>
+</Carousel>
+                
 
             </Container> 
+            
 
             
         );
